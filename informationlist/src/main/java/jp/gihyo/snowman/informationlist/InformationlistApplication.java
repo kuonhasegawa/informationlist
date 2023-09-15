@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class InformationlistApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(InformationlistApplication.class, args);
 	}
 
