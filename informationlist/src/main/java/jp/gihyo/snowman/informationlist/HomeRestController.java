@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 public class HomeRestController {
-    record TaskItem(String id, String task, String deadline,boolean done){}
+    record TaskItem(String id, String task, String deadline){}
     private List<TaskItem> taskItems = new ArrayList<>();
     @RequestMapping(value = "/resthello")
     String hello(){
@@ -27,7 +27,7 @@ public class HomeRestController {
     String addItem(@RequestParam("task") String task,
                    @RequestParam("deadline") String deadline){
         String id = UUID.randomUUID().toString().substring(0,8);
-        TaskItem item = new TaskItem(id , task, deadline, false);
+        TaskItem item = new TaskItem(id , task, deadline);
         taskItems.add(item);
 
         return "タスクを追加しました。";

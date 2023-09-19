@@ -35,8 +35,7 @@
     <tr>
       <th class="hidden">ID</th>
       <th>タイトル</th>
-      <th>日にち</th>
-      <th>状態</th>
+      <th>日付</th>
       <th>更新</th>
       <th>削除<!-- 削除ボタン --></th>
     </tr>
@@ -46,7 +45,6 @@
       <td th:text="${task.id}" class="hidden"></td>
       <td th:text="${task.task}"></td>
       <td th:text="${task.deadline}"></td>
-      <td th:text="${task.done} ? '完' : '未'"></td>
       <td>
         <button type="submit" name="update_button" onclick="copyToDialog(this.parentElement.parentElement);" data-bs-toggle="modal" data-bs-target="#updatedialog" class="btn btn-primary">更新</button>
       </td>
@@ -65,19 +63,14 @@
     <div class="modal-content">
       <form action="/update">
         <div class="modal-header">
-          <h2>タスクの更新</h2>
+          <h2>出演情報一覧</h2>
         </div>
         <div class="modal-body">
           <input id="update_id" name="id" type="hidden"/>
-          <label for="update_task">タスク</label>
+          <label for="update_task">タイトル</label>
           <input id="update_task" class="form-control" name="task" type="text"/>
-          <label for="update_deadline">期限</label>
+          <label for="update_deadline">日付</label>
           <input id="update_deadline" class="form-control" name="deadline" type="date"/>
-          <label for="update_status">状態</label>
-          <select id="update_status" class="form-select" name="done">
-            <option value="false">未完了</option>
-            <option value="true">完了</option>
-          </select>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">更新</button>
@@ -92,7 +85,6 @@
         document.getElementById('update_id').value = row.cells[0].firstChild.data;
         document.getElementById('update_task').value = row.cells[1].firstChild.data;
         document.getElementById('update_deadline').value = row.cells[2].firstChild.data;
-        document.getElementById('update_status').selectedIndex=(row.cells[3].firstChild.data=='完了')?1:0;
 <!--        var dialog = document.getElementById('updatedialog');-->
 <!--        dialog.style.left= ((window.innerWidth - 500) / 2) + 'px';-->
 <!--        dialog.style.display='block';-->
@@ -119,7 +111,6 @@
             var id = msg[i].id;
             var task = msg[i].task;
             var deadline = msg[i].deadline;
-            var done = msg[i].done;
             $obj = $("#table_row").clone();  //追加する行のデータをコピー
             //ここにid,task,deadline,doneのセット処理を記述
             $obj.find("[name=task]").text(task);
@@ -136,7 +127,6 @@
       <td class="hidden"></td>
       <td name="task"></td>
       <td name="deadline"></td>
-      <td name="done"></td>
       <td>
         <button type="submit" name="update_button" onclick="copyToDialog(this.parentElement.parentElement);" data-bs-toggle="modal" data-bs-target="#updatedialog" class="btn btn-primary">更新</button>
       </td>
