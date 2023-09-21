@@ -16,6 +16,14 @@
     <option value="1">固定情報</option>
   </select>
 
+<!--  <label for="content">内容</label>-->
+<!--  <select id="content">-->
+<!--    <option value="0">TV</option>-->
+<!--    <option value="1">雑誌</option>-->
+<!--    <option value="2">ラジオ</option>-->
+<!--  </select>-->
+
+
   <br><label class="form-label">タイトル</label>
   <input name="task" class="form-control"　type="text" id="new_task" />
   <label class="form-label">日にち</label>
@@ -78,8 +86,8 @@
 <script language="JavaScript">
     function copyToDialog(row){
         document.getElementById('update_id').value = row.cells[0].firstChild.data;
-        document.getElementById('update_task').value = row.cells[1].firstChild.data;
-        document.getElementById('update_deadline').value = row.cells[2].firstChild.data;
+        document.getElementById('update_task').value = row.cells[2].firstChild.data;
+        document.getElementById('update_deadline').value = row.cells[3].firstChild.data;
 <!--        var dialog = document.getElementById('updatedialog');-->
 <!--        dialog.style.left= ((window.innerWidth - 500) / 2) + 'px';-->
 <!--        dialog.style.display='block';-->
