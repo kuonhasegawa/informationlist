@@ -11,23 +11,23 @@
 <!--<div class="task_form">-->
 <form action="/add">
   <label for="information">出演情報</label>
-  <select id="information">
+  <select id="information" name="information">
     <option value="0">出演情報</option>
     <option value="1">固定情報</option>
   </select>
 
-<!--  <label for="content">内容</label>-->
-<!--  <select id="content">-->
-<!--    <option value="0">TV</option>-->
-<!--    <option value="1">雑誌</option>-->
-<!--    <option value="2">ラジオ</option>-->
-<!--  </select>-->
-
+  <label for="content">内容</label>
+  <select id="content" name="content">
+    <option value="0">TV</option>
+    <option value="1">雑誌</option>
+    <option value="2">ラジオ</option>
+  </select>
+  
 
   <br><label class="form-label">タイトル</label>
   <input name="task" class="form-control"　type="text" id="new_task" />
   <label class="form-label">日にち</label>
-  <input class="form-control" name="deadline" type="date" id="new_deadline"/>
+  <input class="form-control" name="deadline" type="datetime-local" id="new_deadline"/>
   <input type="submit" value="登録" onclick="restAdd();" />
 </form>
 <!--</div>-->
@@ -73,7 +73,7 @@
           <label for="update_task">タイトル</label>
           <input id="update_task" class="form-control" name="task" type="text"/>
           <label for="update_deadline">日付</label>
-          <input id="update_deadline" class="form-control" name="deadline" type="date"/>
+          <input id="update_deadline" class="form-control" name="deadline" type="datetime-local"/>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">更新</button>
@@ -86,8 +86,8 @@
 <script language="JavaScript">
     function copyToDialog(row){
         document.getElementById('update_id').value = row.cells[0].firstChild.data;
-        document.getElementById('update_task').value = row.cells[2].firstChild.data;
-        document.getElementById('update_deadline').value = row.cells[3].firstChild.data;
+        document.getElementById('update_task').value = row.cells[1].firstChild.data;
+        document.getElementById('update_deadline').value = row.cells[2].firstChild.data;
 <!--        var dialog = document.getElementById('updatedialog');-->
 <!--        dialog.style.left= ((window.innerWidth - 500) / 2) + 'px';-->
 <!--        dialog.style.display='block';-->
@@ -127,7 +127,7 @@
   <table>
     <tbody>
     <tr id="table_row">
-      <td class="hidden"></td>
+      <td  name="id" class="hidden"></td>
       <td name="task"></td>
       <td name="deadline"></td>
       <td>

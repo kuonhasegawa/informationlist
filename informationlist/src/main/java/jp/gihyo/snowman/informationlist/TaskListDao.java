@@ -56,6 +56,7 @@ public class TaskListDao {
                 taskItem.task(),
                 taskItem.deadline(),
                 taskItem.id());
+
         return number;
     }
 }
