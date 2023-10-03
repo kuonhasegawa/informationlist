@@ -36,7 +36,6 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <th class="hidden">ID</th>
       <th>出演情報</th>
       <th>タイトル</th>
       <th>内容</th>
@@ -46,10 +45,15 @@
     </thead>
     <tbody id="task_list_body">
     <tr th:each="task : ${taskList}">
-      <td th:text="${task.id}" class="hidden"></td>
       <td th:text="${task.information}=='0' ? '出演情報':'固定情報'"></td>
       <td th:text="${task.task}"></td>
-      <td th:text="${task.content}"></td>
+      <td>
+        <div th:switch="${task.content}">
+          <p th:case="0" th:text="|TV|"></p>
+          <p th:case="1" th:text="|雑誌|"></p>
+          <p th:case="2" th:text="|ラジオ|"></p>
+        </div>
+      </td>
       <td th:text="${task.deadline}"></td>
       <td>
         <form action="/delete">

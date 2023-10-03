@@ -32,7 +32,7 @@ public class TaskListDao {
     }
 
     public  List <TaskItem> findAll(){
-        String query = "SELECT * FROM tasklist";
+        String query = "SELECT * FROM tasklist ORDER BY deadline ASC";
 
         List<Map<String, Object>> result = jdbcTemplate.queryForList(query);
         List<TaskItem> taskItems = result.stream()

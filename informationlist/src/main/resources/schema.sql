@@ -3,5 +3,6 @@ CREATE TABLE IF NOT EXISTS tasklist(
     information VARCHAR(5),
     task VARCHAR(256),
     content VARCHAR(5),
-    deadline VARCHAR(20)
+    deadline VARCHAR(20),
+    member_id VARCHAR(8)
 );
