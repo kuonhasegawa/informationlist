@@ -39,5 +39,4 @@ public class HomeRestController {
                 .collect(Collectors.joining(","));
         return result;
     }
-
 }

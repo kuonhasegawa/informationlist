@@ -1,6 +1,8 @@
 package jp.gihyo.snowman.informationlist;
 
+import ch.qos.logback.core.model.Model;
 import jp.gihyo.snowman.informationlist.HomeController.TaskItem;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -31,8 +33,9 @@ public class TaskListDao {
         insert.execute(parm);
     }
 
-    public  List <TaskItem> findAll(){
-        String query = "SELECT * FROM tasklist ORDER BY deadline ASC";
+
+    public List<TaskItem> findAll(){
+        String query = "SELECT * FROM tasklist LEFT JOIN member ON tasklist.member_id = member.id  LEFT JOIN content ON tasklist.content_id = content.id  ORDER BY deadline ASC";
 
         List<Map<String, Object>> result = jdbcTemplate.queryForList(query);
         List<TaskItem> taskItems = result.stream()
@@ -40,12 +43,31 @@ public class TaskListDao {
                         row.get("id").toString(),
                         row.get("information").toString(),
                         row.get("task").toString(),
-                        row.get("content").toString(),
+                        row.get("type").toString(),
+                        row.get("name").toString(),
                         row.get("deadline").toString()))
                 .toList();
 
         return taskItems;
     }
+    public List<TaskItem> findMember(String id){
+        String query = "SELECT * FROM  tasklist LEFT JOIN member ON tasklist.member_id = member.id LEFT JOIN content ON tasklist.content_id = content.id WHERE tasklist.member_id IN ('0','" + id  +"') ORDER BY deadline ASC";
+
+        List<Map<String, Object>> result = jdbcTemplate.queryForList(query);
+        List<TaskItem> taskItems = result.stream()
+                .map((Map<String ,Object> row) -> new TaskItem(
+                        row.get("id").toString(),
+                        row.get("information").toString(),
+                        row.get("task").toString(),
+                        row.get("type").toString(),
+                        row.get("name").toString(),
+                        row.get("deadline").toString()))
+                .toList();
+
+        return taskItems;
+    }
+
+
     public int delete(String id){
         int number = jdbcTemplate.update("DELETE FROM tasklist WHERE id =?" ,id);
         return number;

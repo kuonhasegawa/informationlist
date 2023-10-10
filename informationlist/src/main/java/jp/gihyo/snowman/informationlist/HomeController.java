@@ -35,7 +35,10 @@ public class HomeController {
 //                """.formatted(LocalDateTime.now());
 //    }
 
-    record TaskItem(String id, String information,String task, String content,String deadline){}
+    record TaskItem(String id, String information,String task, String content_id,String member_id,String deadline){}
+
+
+
     private List<TaskItem> taskItems = new ArrayList<>();
 
     @RequestMapping(value = "/hello")
@@ -47,16 +50,24 @@ public class HomeController {
     String listItems(Model model){
         List<TaskItem> taskItems = dao.findAll();
         model.addAttribute("taskList",taskItems);
+
+        List<TaskItem> member = dao.findAll();
+        model.addAttribute("member",member);
+
+        List<TaskItem> content = dao.findAll();
+        model.addAttribute("content",content);
+
         return "home";
     }
 
     @GetMapping("/add")
     String addItem(@RequestParam("information")String information,
                    @RequestParam("task")String task,
-                   @RequestParam("content") String content,
+                   @RequestParam("content_id") String content_id,
+                   @RequestParam("member_id") String member_id,
                    @RequestParam("deadline") String deadline){
         String id = UUID.randomUUID().toString().substring(0,8);
-        TaskItem item = new TaskItem(id,information,task,content,deadline);
+        TaskItem item = new TaskItem(id,information,task,content_id,member_id,deadline);
         dao.add(item);
 
         return "redirect:/list";
@@ -72,4 +83,7 @@ public class HomeController {
     String home(Model model) {
         return "home0";
     }
+
+//    @GetMapping("/main")
+//    String main(Model model){ return "main";}
 }

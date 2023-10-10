@@ -2,9 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
   <meta charset="UTF-8">
+  <button onclick="history.back()">戻る</button>
   <title>番組の出演情報登録</title>
   <!--    <link th:href="@{/home.css}" rel="stylesheet">-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
 </head>
 <body>
 <h1>番組の出演情報登録</h1>
@@ -16,11 +18,27 @@
     <option value="1">固定情報</option>
   </select>
 
-  <label for="content">内容</label>
-  <select id="content" name="content">
+  <label for="content_id">内容</label>
+  <select id="content_id" name="content_id">
     <option value="0">TV</option>
     <option value="1">雑誌</option>
     <option value="2">ラジオ</option>
+    <option value="3">舞台</option>
+    <option value="4">ライブ</option>
+  </select>
+
+  <label for="member_id">メンバー</label>
+  <select id="member_id" name="member_id">
+    <option value="0">SnowMan</option>
+    <option value="1">岩本照</option>
+    <option value="2">深澤辰哉</option>
+    <option value="3">ラウール</option>
+    <option value="4">宮舘涼太</option>
+    <option value="5">渡辺翔太</option>
+    <option value="6">向井康二</option>
+    <option value="7">阿部亮平</option>
+    <option value="8">佐久間大介</option>
+    <option value="9">目黒蓮</option>
   </select>
   
 
@@ -39,6 +57,7 @@
       <th>出演情報</th>
       <th>タイトル</th>
       <th>内容</th>
+      <th>メンバー</th>
       <th>日付</th>
       <th>削除<!-- 削除ボタン --></th>
     </tr>
@@ -47,13 +66,8 @@
     <tr th:each="task : ${taskList}">
       <td th:text="${task.information}=='0' ? '出演情報':'固定情報'"></td>
       <td th:text="${task.task}"></td>
-      <td>
-        <div th:switch="${task.content}">
-          <p th:case="0" th:text="|TV|"></p>
-          <p th:case="1" th:text="|雑誌|"></p>
-          <p th:case="2" th:text="|ラジオ|"></p>
-        </div>
-      </td>
+      <td th:text="${task.content_id}"></td>
+      <td th:text="${task.member_id}"></td>
       <td th:text="${task.deadline}"></td>
       <td>
         <form action="/delete">
