@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.lang.reflect.Member;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -42,6 +42,20 @@ public class MainController {
     String listItems(Model model, @PathVariable("member_id") String member_id){
         List<HomeController.TaskItem> taskItems = dao.findMember(member_id);
         model.addAttribute("taskList",taskItems);
+        String name="";
+        if (member_id.equals("1")){
+            name="hi-kun.jpg";
+        }
+        if (member_id.equals("2")){
+            name="fukka.jpg";
+        }
+        if (member_id.equals("3")){
+            name="rau.jpg";
+        }
+        if (member_id.equals("4")){
+            name="datesama.jpg";
+        }
+        model.addAttribute("name",name);
 
 
 //        List<HomeController.TaskItem> member = dao.findAll();
