@@ -41,7 +41,6 @@ public class TaskListDao {
         List<TaskItem> taskItems = result.stream()
                 .map((Map<String ,Object> row) -> new TaskItem(
                         row.get("id").toString(),
-                        row.get("information").toString(),
                         row.get("task").toString(),
                         row.get("type").toString(),
                         row.get("name").toString(),
@@ -57,7 +56,6 @@ public class TaskListDao {
         List<TaskItem> taskItems = result.stream()
                 .map((Map<String ,Object> row) -> new TaskItem(
                         row.get("id").toString(),
-                        row.get("information").toString(),
                         row.get("task").toString(),
                         row.get("type").toString(),
                         row.get("name").toString(),

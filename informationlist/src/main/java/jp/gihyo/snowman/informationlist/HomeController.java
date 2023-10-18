@@ -35,7 +35,7 @@ public class HomeController {
 //                """.formatted(LocalDateTime.now());
 //    }
 
-    record TaskItem(String id, String information,String task, String content_id,String member_id,String deadline){}
+    record TaskItem(String id,String task, String content_id,String member_id,String deadline){}
 
 
 
@@ -61,13 +61,12 @@ public class HomeController {
     }
 
     @GetMapping("/add")
-    String addItem(@RequestParam("information")String information,
-                   @RequestParam("task")String task,
+    String addItem(@RequestParam("task")String task,
                    @RequestParam("content_id") String content_id,
                    @RequestParam("member_id") String member_id,
                    @RequestParam("deadline") String deadline){
         String id = UUID.randomUUID().toString().substring(0,8);
-        TaskItem item = new TaskItem(id,information,task,content_id,member_id,deadline);
+        TaskItem item = new TaskItem(id,task,content_id,member_id,deadline);
         dao.add(item);
 
         return "redirect:/list";
@@ -84,6 +83,5 @@ public class HomeController {
         return "home0";
     }
 
-//    @GetMapping("/main")
-//    String main(Model model){ return "main";}
+
 }

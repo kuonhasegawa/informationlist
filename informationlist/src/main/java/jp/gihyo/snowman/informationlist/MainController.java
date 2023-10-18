@@ -27,13 +27,12 @@ public class MainController {
 
 
     @GetMapping("/main/add")
-    String addItem(@RequestParam("information")String information,
-                   @RequestParam("task")String task,
+    String addItem(@RequestParam("task")String task,
                    @RequestParam("content_id") String content_id,
                    @RequestParam("member_id") String member_id,
                    @RequestParam("deadline") String deadline){
         String id = UUID.randomUUID().toString().substring(0,8);
-        HomeController.TaskItem item = new HomeController.TaskItem(id,information,task,content_id,member_id,deadline);
+        HomeController.TaskItem item = new HomeController.TaskItem(id,task,content_id,member_id,deadline);
         dao.add(item);
 
         return "redirect:/main";
@@ -54,6 +53,21 @@ public class MainController {
         }
         if (member_id.equals("4")){
             name="datesama.jpg";
+        }
+        if (member_id.equals("5")){
+            name="shoppi.jpg";
+        }
+        if (member_id.equals("6")){
+            name="ko-ji.jpg";
+        }
+        if (member_id.equals("7")){
+            name="abetyan.jpg";
+        }
+        if (member_id.equals("8")){
+            name="sakkun.jpg";
+        }
+        if (member_id.equals("9")){
+            name="meme.jpg";
         }
         model.addAttribute("name",name);
 

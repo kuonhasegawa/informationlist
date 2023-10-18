@@ -12,11 +12,6 @@
 <h1>番組の出演情報登録</h1>
 <!--<div class="task_form">-->
 <form action="/add">
-  <label for="information">出演情報</label>
-  <select id="information" name="information">
-    <option value="0">出演情報</option>
-    <option value="1">固定情報</option>
-  </select>
 
   <label for="content_id">内容</label>
   <select id="content_id" name="content_id">
@@ -54,7 +49,6 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <th>出演情報</th>
       <th>タイトル</th>
       <th>内容</th>
       <th>メンバー</th>
@@ -64,7 +58,6 @@
     </thead>
     <tbody id="task_list_body">
     <tr th:each="task : ${taskList}">
-      <td th:text="${task.information}=='0' ? '出演情報':'固定情報'"></td>
       <td th:text="${task.task}"></td>
       <td th:text="${task.content_id}"></td>
       <td th:text="${task.member_id}"></td>
