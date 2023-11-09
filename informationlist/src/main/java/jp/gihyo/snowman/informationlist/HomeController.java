@@ -76,12 +76,17 @@ public class HomeController {
         dao.delete(id);
         return "redirect:/list";
     }
+    @GetMapping("/")
+    String index(Model model) {
+        return "index";
+    }
 
 
     @GetMapping("/home")
     String home(Model model) {
         return "home0";
     }
+    //一番最初に現れるメイン画面
 
 
 }

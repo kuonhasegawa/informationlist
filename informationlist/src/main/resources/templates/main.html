@@ -13,12 +13,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <button onclick="history.back()">戻る</button>
 <img th:src="@{'/picture/'+ ${name}}" alt="" width="1349">
+<!--Main Controllerの方にある写真をここで持ってきている-->
 <div style="display: flex">
     <a class="twitter-timeline" data-width="300" data-height="500" href="https://twitter.com/SN__20200122?ref_src=twsrc%5Etfw">Tweets by SN__20200122</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
     <div>
 
         <table style="width:1100px" class="table table-striped">
+<!--            HomeControllerで作られたものをそのまま引いてきて使っている-->
              <thead>
         <tr>
             <th>タイトル</th>

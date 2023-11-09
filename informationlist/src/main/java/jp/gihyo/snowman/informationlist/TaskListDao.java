@@ -34,7 +34,7 @@ public class TaskListDao {
     }
 
 
-    public List<TaskItem> findAll(){
+    public List<TaskItem> findAll(){//編集画面の一覧。
         String query = "SELECT * FROM tasklist LEFT JOIN member ON tasklist.member_id = member.id  LEFT JOIN content ON tasklist.content_id = content.id  ORDER BY deadline ASC";
 
         List<Map<String, Object>> result = jdbcTemplate.queryForList(query);
@@ -51,7 +51,7 @@ public class TaskListDao {
     }
     public List<TaskItem> findMember(String id){
         String query = "SELECT * FROM  tasklist LEFT JOIN member ON tasklist.member_id = member.id LEFT JOIN content ON tasklist.content_id = content.id WHERE tasklist.member_id IN ('0','" + id  +"') ORDER BY deadline ASC";
-
+//メンバーIDを分ける操作をしている。下に個々に出したいものを書いている。
         List<Map<String, Object>> result = jdbcTemplate.queryForList(query);
         List<TaskItem> taskItems = result.stream()
                 .map((Map<String ,Object> row) -> new TaskItem(
@@ -66,7 +66,7 @@ public class TaskListDao {
     }
 
 
-    public int delete(String id){
+    public int delete(String id){//削除機能
         int number = jdbcTemplate.update("DELETE FROM tasklist WHERE id =?" ,id);
         return number;
     }

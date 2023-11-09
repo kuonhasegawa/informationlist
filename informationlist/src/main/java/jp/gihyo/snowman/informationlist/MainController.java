@@ -26,7 +26,7 @@ public class MainController {
     private List<HomeController.TaskItem> taskItems = new ArrayList<>();
 
 
-    @GetMapping("/main/add")
+    @GetMapping("/main/add")//個々のための情報、タイトル、内容、メンバー、日付
     String addItem(@RequestParam("task")String task,
                    @RequestParam("content_id") String content_id,
                    @RequestParam("member_id") String member_id,
@@ -38,6 +38,7 @@ public class MainController {
         return "redirect:/main";
     }
     @GetMapping("/main/{member_id}")
+    //個々のメンバー情報を出す場所
     String listItems(Model model, @PathVariable("member_id") String member_id){
         List<HomeController.TaskItem> taskItems = dao.findMember(member_id);
         model.addAttribute("taskList",taskItems);
