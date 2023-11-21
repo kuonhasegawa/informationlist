@@ -32,3 +32,4 @@ public class Sendmail {
         return Arrays.asList("OK");
     }
 }
+
